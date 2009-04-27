@@ -69,7 +69,7 @@ module Authlogic
             
             if column_names.include?("updated_at") && age > 0
               conditions_sql += " and updated_at > ?"
-              conditions_subs << age.seconds.ago
+              conditions_subs << age.seconds.ago.utc
             end
             
             find(:first, :conditions => [conditions_sql, *conditions_subs])
